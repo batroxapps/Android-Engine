@@ -7,10 +7,32 @@ import android.graphics.drawable.Drawable;
 public abstract class Entity{
 	
 	private Drawable sprite;
-	private double speed;
+	private double xSpeed;
+	private double ySpeed;
 	
-	public Entity(Drawable i, double s){
+	private int xPos;
+	private int yPos;
+	
+	public Entity(Drawable i, double xs, double ys, int x, int y){
 		sprite = i;
-		speed = s;
+		xSpeed = xs;
+		ySpeed = ys;
+	}
+	
+	public int getXPos(){
+		return xPos;
+	}
+	
+	public int getYPos(){
+		return yPos;
+	}
+	
+	public synchronized void draw(long timeDifference){
+		move(timeDifference);
+	}
+	
+	private void move(long timeDifference){
+		xPos += timeDifference * xSpeed;
+		yPos += timeDifference * ySpeed;
 	}
 }

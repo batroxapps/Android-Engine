@@ -1,29 +1,62 @@
 package be.batrox.androidengine;
 
+import static be.batrox.util.Utils.*;
+
 import be.batrox.androidengine.screen.Screen;
+
+import android.app.Activity;
+
+import android.content.Intent;
+
+import android.opengl.GLSurfaceView;
 
 import java.util.ArrayList;
 
 public class Engine{
 	
-	private ArrayList<Screen> screens = new ArrayList<Screen>();
-	private boolean isRunning = false;
+	private static GLSurfaceView activeScreen;
+	private static boolean running = false;
 	
-	public Engine(){
+	private static GameThread gameThread;
+	
+	private static Screen screenActivity;
+	
+	public static void init(){
+		// start Screen activity
 		
 	}
 	
-	public void startTimer(){
-		isRunning = true;
+	public static void startTimer(){
+		running = true;
+		
+		write("running");
 		
 		// start game thread
+		gameThread = new GameThread();
+		new Thread(gameThread).start();
 	}
 	
-	public void pauseTimer(){
-		isRunning = false;
+	public static void setScreenActivity(Screen a){
+		gameThread.setScreenActivity(a);
 	}
 	
-	public boolean isRunning(){
-		return isRunning;
+	public static void pauseTimer(){
+		running = false;
+		
+		write("stopped");
+	}
+	
+	public static boolean isRunning(){
+		return running;
+	}
+	
+	public static void ActivateScreen(GLSurfaceView screen){
+		activeScreen = screen;
+		
+		screenActivity.setGLSurfaceView(screen);
+	}
+	
+	public static GLSurfaceView getActiveScreen(){
+		return activeScreen;
 	}
 }
