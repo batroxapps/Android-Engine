@@ -1,4 +1,4 @@
-package be.batrox.androidengine.kernel;
+package be.batrox.androidengine.log;
 
 import be.batrox.androidengine.R;
 

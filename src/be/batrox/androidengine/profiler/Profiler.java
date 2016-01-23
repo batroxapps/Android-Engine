@@ -1,6 +1,6 @@
 package be.batrox.androidengine.profiler;
 
-import be.batrox.androidengine.kernel.Logger;
+import be.batrox.androidengine.log.Logger;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -52,6 +52,10 @@ public class Profiler {
 
     public long getAverage(String n) {
         return codeBlocks.get(n).getAverage();
+    }
+
+    public int getCalls(String n) {
+        return codeBlocks.get(n).getCalls();
     }
 
     public void printData(String n) {
