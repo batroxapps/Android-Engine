@@ -13,7 +13,7 @@ import android.os.Bundle;
 
 import java.util.ArrayList;
 
-public class Screen extends Activity
+public abstract class Screen extends Activity
 {
 	// GLSurfaceView where everything is drawn upon
 	private GLSurfaceView surfView;
@@ -27,12 +27,9 @@ public class Screen extends Activity
     public void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        
-        Engine.setScreenActivity(this);
-        
-        surfView = new MyGLSurfaceView(this);
-        setContentView(surfView);
     }
+    
+	public void loadSurfaceViews(){}
     
     public synchronized void draw(long timeDifference){
 		player.draw(timeDifference);

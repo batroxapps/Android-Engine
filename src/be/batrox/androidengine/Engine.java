@@ -40,6 +40,10 @@ public class Engine{
 		gameThread.setScreenActivity(a);
 	}
 	
+	public static Screen getScreenActivity(){
+		return gameThread.getScreenActivity();
+	}
+	
 	public static void pauseTimer(){
 		running = false;
 		
@@ -50,10 +54,10 @@ public class Engine{
 		return running;
 	}
 	
-	public static void ActivateScreen(GLSurfaceView screen){
+	public static void activateScreen(GLSurfaceView screen){
 		activeScreen = screen;
 		
-		screenActivity.setGLSurfaceView(screen);
+		gameThread.activateScreen(screen);
 	}
 	
 	public static GLSurfaceView getActiveScreen(){
